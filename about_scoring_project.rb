@@ -29,9 +29,45 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #
 # Your goal is to write the score method.
 
+####################################################################
+
 def score(dice)
-  # You need to write this method
+
+  # Create a variable to store the total score.
+  total = 0
+
+  # Begin iterating through the array "dice", for each unique roll value only once.
+  dice.uniq.each do |roll|
+      # Create a variable to count the number of times each roll comes up.
+      counting = dice.count roll
+
+      # Establish the multipication bonus for each score of triples.
+      bonus =
+        if roll == 1 then 10
+        else roll
+        end
+
+      # Add all scores for sets of 3, multiplied by the bonus value.
+      if counting >= 3
+        total += bonus * 100
+        counting -= 3
+      end
+
+      # Add scores for single occurances of 1 or 5
+      if (counting > 0) && (roll == 1 || roll == 5)
+          total += counting * bonus * 10
+      end
+
+  end
+
+  # Return the total score.
+  return total
+
 end
+
+
+
+####################################################################
 
 class AboutScoringProject < Neo::Koan
   def test_score_of_an_empty_list_is_zero
