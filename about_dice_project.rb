@@ -1,10 +1,36 @@
 require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 # Implement a DiceSet Class here:
-#
-# class DiceSet
-#   code ...
-# end
+
+class DiceSet
+    # Takes in a number of "dice" for which to roll(assign) values from 1-6
+    # Places those values in an array
+    # Returns the array
+
+  #Take control of the "values" object.
+  attr_accessor :values
+
+  # Create the method to roll the dice.
+  def roll(set)
+    # Establish that a DiceSet is an Array of values.
+    @values = []
+
+    # Loop through "set" number of rolls.
+    $i = 0
+    while  $i < set do
+
+      @values.push(1 + rand(6)) #Adds Random value 1-6 to array.
+      $i += 1
+
+    end
+  end
+end
+
+  # NOT GOING TO LIE ! SUPER IMPRESSED WITH MYSELF!
+  # This worked on my second rake!
+  # The first time I forgot the "$" in the "$i += 1" part of my loop.
+  # High Five ME!
+
 
 class AboutDiceProject < Neo::Koan
   def test_can_create_a_dice_set
